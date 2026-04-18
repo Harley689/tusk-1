@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dead Code</title>
+
+<!-- خط عربي شيك -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    color: #fff;
+    background: #000;
+    overflow-x: hidden;
+}
+
+/* خلفية قماش احترافية */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), transparent 40%),
+        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05), transparent 40%),
+        url('https://www.transparenttextures.com/patterns/black-fabric.png');
+    background-size: cover;
+    opacity: 0.9;
+    z-index: -2;
+}
+
+/* طبقة غمقان */
+body::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), #000);
+    z-index: -1;
+}
+
+/* الهيدر */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    align-items: center;
+}
+
+/* اسم الفريق */
+.team-name {
+    color: #ff2e2e;
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: 0 0 10px red;
+}
+
+/* كود الفريق */
+.team-code {
+    color: #bbb;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+/* النص الأساسي */
+.center-text {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 34px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #fff;
+    animation: fadeIn 1.5s ease;
+}
+
+/* الفريم */
+.frame {
+    margin: 50px auto;
+    width: 90%;
+    max-width: 420px;
+    padding: 12px;
+    border-radius: 15px;
+    
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    box-shadow:
+        0 0 25px rgba(0,0,0,0.9),
+        inset 0 0 10px rgba(255,255,255,0.05);
+
+    transition: 0.4s;
+}
+
+/* حركة الفريم */
+.frame:hover {
+    transform: scale(1.04);
+    box-shadow:
+        0 0 40px rgba(255,255,255,0.1),
+        inset 0 0 15px rgba(255,255,255,0.1);
+}
+
+/* الصورة */
+.frame img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+/* أنيميشن */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* موبايل */
+@media (max-width: 600px) {
+    .center-text {
+        font-size: 26px;
+    }
+
+    .team-name {
+        font-size: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="team-name">Dead code</div>
+    <div class="team-code">كود فريق: CIA3375G</div>
+</div>
+
+<div class="center-text">
+    🌺 صلي ؏ النبي
+</div>
+
+<div class="frame">
+    <!-- حط صورتك هنا -->
+    <img src="your-image.jpg" alt="">
+</div>
+
+</body>
+</html>
