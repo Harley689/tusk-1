@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dead Code</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Cairo',sans-serif;
+    background:#050505;
+    color:white;
+    direction:rtl;
+    overflow-x:hidden;
+}
+
+/* خلفية */
+#particles{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+}
+
+/* الهيدر */
+header{
+    display:flex;
+    justify-content:space-between;
+    padding:18px 45px;
+    background:rgba(255,255,255,0.03);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+    font-size:26px;
+    font-weight:900;
+    color:#ff2e2e;
+}
+
+.code{
+    font-size:13px;
+    color:#aaa;
+}
+
+/* Hero */
+.hero{
+    text-align:center;
+    margin-top:80px;
+}
+
+.hero h1{
+    font-size:42px;
+    color:gold;
+    animation:fade 1.5s ease;
+}
+
+.typing{
+    margin-top:10px;
+    color:#ccc;
+    font-size:17px;
+    min-height:25px;
+}
+
+/* الصورة (مربع كبير) */
+.hero-image{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+}
+
+.hero-image img{
+    width:320px;
+    height:320px;
+    object-fit:cover;
+    border-radius:15px;
+    border:3px solid gold;
+    box-shadow:0 0 25px rgba(255,215,0,0.25);
+    transition:0.4s ease;
+}
+
+.hero-image img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 40px rgba(255,215,0,0.35);
+}
+
+/* Card */
+.card{
+    width:340px;
+    margin:60px auto;
+    border-radius:15px;
+    overflow:hidden;
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    transform:translateY(40px);
+    opacity:0;
+    transition:0.6s;
+}
+
+.card.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.card img{
+    width:100%;
+    height:340px;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.card:hover img{
+    transform:scale(1.05);
+}
+
+/* Animations */
+@keyframes fade{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Responsive */
+@media(max-width:600px){
+    header{padding:15px 20px;}
+    .hero h1{font-size:28px;}
+    .hero-image img{width:260px;height:260px;}
+    .card{width:90%;}
+}
+</style>
+
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+    <div class="logo">Dead Code</div>
+    <div class="code">CIA3375G</div>
+</header>
+
+<div class="hero">
+    <h1>🌺 صلي على النبي</h1>
+    <div class="typing" id="typing"></div>
+
+    <!-- صورة مربعة -->
+    <div class="hero-image">
+        <img src="YOUR_IMAGE_HERE.jpg" alt="profile">
+    </div>
+</div>
+
+<div class="card" id="card">
+    <img src="YOUR_IMAGE_HERE.jpg" alt="team">
+</div>
+
+<script>
+
+// typing effect
+const text = "مرحباً بك في موقع فريق Dead Code";
+let i = 0;
+
+function typing(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 60);
+    }
+}
+typing();
+
+// scroll animation
+window.addEventListener("scroll",()=>{
+    const card = document.getElementById("card");
+    if(card.getBoundingClientRect().top < window.innerHeight/1.3){
+        card.classList.add("show");
+    }
+});
+
+// particles
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<60;i++){
+    particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        r:Math.random()*2,
+        s:Math.random()*0.5
+    });
+}
+
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="rgba(255,215,0,0.4)";
+
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+
+        p.y -= p.s;
+        if(p.y < 0) p.y = canvas.height;
+    });
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+
+window.addEventListener("resize",()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+</script>
+
+</body>
+</html>
